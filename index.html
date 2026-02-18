@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Feb 13-14 ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --warm-cream: #fffdfa;
+            --soft-rose: #fce4ec;
+            --deep-rose: #d81b60;
+        }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--warm-cream);
+            color: #444;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .font-cursive { font-family: 'Dancing Script', cursive; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1.2s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scrapbook Paper Texture */
+        .paper-fold {
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border-radius: 2px;
+            position: relative;
+        }
+        .paper-fold::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 0; height: 0;
+            border-style: solid;
+            border-width: 0 30px 30px 0;
+            border-color: transparent transparent var(--soft-rose) transparent;
+        }
+        @media (min-width: 768px) {
+            .paper-fold::after {
+                border-width: 0 40px 40px 0;
+            }
+        }
+
+        /* Heart Animation */
+        .heart-trail {
+            position: absolute;
+            pointer-events: none;
+            animation: floatUp 4s ease-out forwards;
+            opacity: 0;
+            z-index: 100;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-120px) scale(1.5); opacity: 0; }
+        }
+
+        .floating { animation: floating 3s ease-in-out infinite; }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .tap-zone {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .tap-zone:active { transform: scale(0.92); }
+
+        /* Polaroid Hover */
+        .polaroid {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (hover: hover) {
+            .polaroid:hover {
+                transform: scale(1.05) rotate(0deg) !important;
+                z-index: 50;
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-pink-100 cursor-default">
+
+    <!-- Sparkle Layer -->
+    <div id="canvas-bg" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- Cover Gesture -->
+    <div id="cover" class="fixed inset-0 z-[100] bg-[#fffdfa] flex items-center justify-center transition-opacity duration-1000">
+        <div class="text-center px-8 tap-zone" onclick="unfoldStory()">
+            <div class="mb-6 floating">
+                <i data-lucide="heart" class="w-12 h-12 md:w-16 md:h-16 text-pink-300 fill-pink-50 mx-auto"></i>
+            </div>
+            <h1 class="font-serif italic text-2xl md:text-3xl text-gray-800 mb-2">A Log of Us</h1>
+            <p class="text-gray-400 font-light tracking-[0.4em] text-[10px] uppercase">Tap to unfold our 18 hours</p>
+        </div>
+    </div>
+
+    <main id="story-root" class="hidden opacity-0 transition-opacity duration-1000">
+        
+        <!-- Hero: The Intention -->
+        <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center relative">
+            <div class="reveal max-w-2xl">
+                <h2 class="font-cursive text-3xl md:text-4xl text-pink-400 mb-6 md:mb-8">Hi, you.</h2>
+                <p class="text-lg md:text-2xl font-light leading-relaxed text-gray-600 italic">
+                    "We didn't just attend TinkerHack.<br>
+                    We planned a world for 18 hours where<br>
+                    the only thing that mattered was being together."
+                </p>
+                <div class="mt-8 md:mt-12 opacity-30">
+                    <i data-lucide="minus" class="w-12 h-px bg-gray-300 mx-auto"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Hackathon Memory: TinkerHack -->
+        <section class="py-16 md:py-24 px-6 overflow-hidden">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <div class="reveal order-2 md:order-1">
+                        <div class="paper-fold p-6 md:p-14">
+                            <h3 class="font-serif text-xl md:text-2xl mb-6 border-b border-pink-50 pb-4">TinkerHack '26</h3>
+                            <div class="space-y-4 md:space-y-6 text-gray-500 font-light leading-relaxed text-sm md:text-base">
+                                <p>From <span class="text-pink-400 font-medium">5:30 PM on the 13th</span> until <span class="text-pink-400 font-medium">11:00 AM on Valentine's</span>...</p>
+                                <p>I was the mentor, you were the participant, but in those 18 hours, we were just us. We planned this hackathon specifically to be together, and it was everything I hoped for.</p>
+                                <p>The hyper energy at 3 AM, the tired smiles across the table, and the quiet moments amidst the chaos—those were my favorite Valentine's gifts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reveal order-1 md:order-2">
+                        <div class="relative px-4">
+                            <div class="absolute -inset-10 bg-pink-50 rounded-full blur-3xl opacity-20"></div>
+                            <!-- PHOTO: US AT THE HACKATHON -->
+                            <div class="polaroid relative bg-white p-3 md:p-4 shadow-xl rotate-2 md:rotate-3 max-w-sm mx-auto">
+                                <div class="aspect-[4/5] bg-gray-50 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Our moment">
+                                </div>
+                                <p class="mt-4 md:mt-6 font-cursive text-xl md:text-2xl text-center text-gray-400">18 Hours of Us</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Sentiment: You -->
+        <section class="py-20 md:py-32 px-6 bg-[#fffcf9]/50">
+            <div class="max-w-2xl mx-auto text-center reveal">
+                <div class="mb-8 md:mb-12">
+                    <i data-lucide="sparkles" class="w-6 h-6 md:w-8 md:h-8 text-pink-200 mx-auto"></i>
+                </div>
+                <h2 class="font-serif text-3xl md:text-4xl mb-10 md:mb-12">The way I see you.</h2>
+                <div class="space-y-8 md:space-y-12">
+                    <div class="relative inline-block">
+                        <!-- PHOTO: HER SOLO PORTRAIT -->
+                        <div class="w-40 h-40 md:w-56 md:h-56 mx-auto rounded-full overflow-hidden border-[8px] md:border-[12px] border-white shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="You">
+                        </div>
+                        <div class="absolute bottom-0 right-0 md:-bottom-2 md:-right-2 bg-white p-2 rounded-full shadow-lg">
+                            <i data-lucide="heart" class="text-pink-400 fill-pink-400 w-4 h-4 md:w-5 md:h-5"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-500 font-light text-lg md:text-xl leading-relaxed italic px-4">
+                        "The smartest participant in the hall, and the only person who can make 18 hours of coding feel like a heartbeat."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Transition: 40 Days -->
+        <section class="py-24 md:py-40 px-6 relative">
+            <div class="max-w-4xl mx-auto flex flex-col items-center">
+                <div class="reveal text-center">
+                    <div class="inline-block px-4 md:px-6 py-2 rounded-full border border-pink-100 text-pink-300 text-[9px] md:text-[10px] tracking-[0.5em] uppercase mb-8 md:mb-12 font-bold">The Countdown</div>
+                    <h2 class="font-serif text-5xl md:text-7xl text-gray-800 mb-8 md:mb-10">40 Days.</h2>
+                    <p class="text-gray-500 font-light max-w-lg mx-auto text-base md:text-lg leading-relaxed mb-12 md:mb-20 px-4">
+                        I'm graduating soon, but this isn't an ending. Those 18 hours at TinkerHack proved that we can survive any chaos together. These next 40 days are just the bridge to our forever.
+                    </p>
+                </div>
+                
+                <!-- Heart Burst Zone -->
+                <div class="reveal w-full max-w-xs md:max-w-md tap-zone bg-white p-10 md:p-14 rounded-[2.5rem] md:rounded-[3rem] border border-pink-50 text-center shadow-sm mx-auto" onclick="burstHearts(event)">
+                    <p class="text-gray-400 text-[9px] md:text-[10px] tracking-widest uppercase mb-4 md:mb-6">Tap to send a wish for us</p>
+                    <div class="relative inline-block">
+                        <i data-lucide="heart" class="w-10 h-10 md:w-12 md:h-12 text-pink-100 fill-pink-50 mx-auto"></i>
+                        <i data-lucide="sparkles" class="w-5 h-5 md:w-6 md:h-6 text-pink-200 absolute -top-1 -right-1 md:-top-2 md:-right-2"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hopes for the Future -->
+        <section class="py-20 md:py-32 px-6 bg-white">
+            <div class="max-w-3xl mx-auto reveal">
+                <h3 class="font-cursive text-4xl md:text-5xl text-pink-400 mb-12 md:mb-16 text-center">Our Forever Hopes</h3>
+                <div class="space-y-12 md:space-y-16 font-light text-gray-600 italic text-center text-base md:text-lg px-4">
+                    <div class="reveal">
+                        <p>"To many more hacks, where the only prize is your smile."</p>
+                    </div>
+                    <div class="reveal">
+                        <p>"To the quiet mornings where the only code we write is 'I love you'."</p>
+                    </div>
+                    <div class="reveal">
+                        <p>"To every single day after graduation where I get to be by your side."</p>
+                    </div>
+                    <div class="mt-16 md:mt-24 reveal">
+                        <h4 class="text-2xl md:text-3xl font-serif text-gray-800 not-italic">Together. Forever.</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Signature -->
+        <footer class="py-20 md:py-24 text-center px-6">
+            <div class="w-12 md:w-16 h-px bg-pink-100 mx-auto mb-8 md:mb-10"></div>
+            <p class="font-cursive text-2xl md:text-3xl text-pink-300">Your Mentor, Your Partner, Yours.</p>
+            <div class="mt-6 md:mt-8 flex justify-center gap-4 text-pink-100">
+                <i data-lucide="binary" class="w-4 h-4"></i>
+                <i data-lucide="coffee" class="w-4 h-4"></i>
+                <i data-lucide="terminal" class="w-4 h-4"></i>
+            </div>
+            <p class="text-[8px] md:text-[9px] tracking-[0.5em] md:tracking-[0.6em] uppercase text-gray-300 mt-8 md:mt-10">TinkerHack Archive • Post-Val Log • 2026</p>
+        </footer>
+
+    </main>
+
+    <script>
+        function init() {
+            lucide.createIcons();
+            setupScrollReveal();
+        }
+
+        function unfoldStory() {
+            const cover = document.getElementById('cover');
+            const root = document.getElementById('story-root');
+            
+            cover.classList.add('opacity-0');
+            setTimeout(() => {
+                cover.style.display = 'none';
+                root.classList.remove('hidden');
+                setTimeout(() => {
+                    root.classList.add('opacity-100');
+                    window.scrollTo(0,0);
+                }, 50);
+            }, 1000);
+        }
+
+        function setupScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function burstHearts(e) {
+            const container = document.body;
+            const x = e.clientX || (e.touches && e.touches[0].clientX);
+            const y = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            for(let i=0; i<10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-trail text-pink-400';
+                heart.style.left = (x + (Math.random() - 0.5) * 60) + 'px';
+                heart.style.top = (y + (Math.random() - 0.5) * 60) + 'px';
+                
+                heart.innerHTML = `<i data-lucide="heart" style="width:${Math.random()*12+8}px; fill:currentColor"></i>`;
+                container.appendChild(heart);
+                lucide.createIcons();
+                
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+
+        // Mouse trail sparkle
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const spark = document.createElement('div');
+                spark.className = 'fixed pointer-events-none text-pink-200/30 z-0';
+                spark.style.left = e.clientX + 'px';
+                spark.style.top = e.clientY + 'px';
+                spark.innerHTML = `<i data-lucide="plus" style="width:6px"></i>`;
+                document.getElementById('canvas-bg').appendChild(spark);
+                lucide.createIcons();
+                
+                spark.animate([
+                    { transform: 'translate(0,0) scale(1)', opacity: 0.4 },
+                    { transform: `translate(${(Math.random()-0.5)*30}px, 30px) scale(0)`, opacity: 0 }
+                ], { duration: 1500, easing: 'ease-out' }).onfinish = () => spark.remove();
+            }
+        });
+
+        window.onload = init;
+    </script>
+</body>
+</html>
